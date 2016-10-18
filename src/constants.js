@@ -83,8 +83,8 @@ export const methods = [
 
 export const props = {
 	src: PropTypes.string,
-	autoSize: PropTypes.bool,
-	nodeIntegration: PropTypes.bool,
+	autosize: PropTypes.bool,
+	nodeintegration: PropTypes.bool,
 	plugins: PropTypes.bool,
 	preload: PropTypes.string,
 	httpreferrer: PropTypes.string,
@@ -95,4 +95,14 @@ export const props = {
 	blinkfeatures: PropTypes.string,
 	disableblinkfeatures: PropTypes.string,
 	guestinstance: PropTypes.number,
+	devtools: PropTypes.bool,
+	muted: PropTypes.bool,
+};
+
+export const changableProps = {
+	src: '__USE_ATTR__',
+	useragent: 'setUserAgent',
+	guestinstance: '__USE_ATTR__',
+	devtools: 'setDevTools',
+	muted: 'setAudioMuted',
 };

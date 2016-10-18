@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import camelCase from 'lodash.camelcase';
-import { events, methods, props } from './constants';
+import { changableProps, events, methods, props } from './constants';
 
 export default class ElectronWebView extends Component {
 	componentDidMount () {
@@ -42,9 +42,29 @@ export default class ElectronWebView extends Component {
 				return this.view[method](...args)
 			}
 		})
+		this.setDevTools = (open) => {
+			if (open && !this.isDevToolsOpened()) {
+				this.openDevTools();
+			} else if (!open && this.isDevToolsOpened()) {
+				this.closeDevTools();
+			}
+		};
 	}
 
-	isReady() {
+	componentDidUpdate (prevProps) {
+		console.log('Update')
+		Object.keys(changableProps).forEach(propName => {
+			if (this.props[propName] !== prevProps[propName]) {
+				if (changableProps[propName] == '__USE_ATTR__') {
+					this.view.setAttribute(propName, this.props[propName]);
+				} else {
+					this[changableProps[propName]](this.props[propName]);
+				}
+			}
+		});
+	}
+
+	isReady () {
 		return this.ready;
 	}
 

@@ -38,6 +38,8 @@ ones
 
 * `className` String - Sets the className of the WebView element
 * `style` Object - Sets the style of the **wrapping** div element.
+* `muted` Boolean - Sets the muted state of the webContents
+* `devtools` Boolean - `true` if the devtools should be open, `false` otherwise
 
 ### Notes
 
