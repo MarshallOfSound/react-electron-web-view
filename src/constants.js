@@ -11,7 +11,8 @@ export const events = [
 	'did-get-response-details',
 	'did-get-redirect-request',
 	'dom-ready',
-	'page-title-set',
+	'page-title-set', // deprecated event
+	'page-title-updated',
 	'page-favicon-updated',
 	'enter-html-full-screen',
 	'leave-html-full-screen',
