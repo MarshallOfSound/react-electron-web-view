@@ -1,5 +1,2 @@
-.publish/*
-dist/*
-example/dist/*
 lib/*
 node_modules/*
