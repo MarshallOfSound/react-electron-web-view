@@ -1,5 +1,11 @@
 # Electron WebView
 
+[![Build Status](https://travis-ci.org/MarshallOfSound/react-electron-web-view.svg?branch=master)](https://travis-ci.org/MarshallOfSound/react-electron-web-view)
+[![npm version](https://badge.fury.io/js/react-electron-web-view.svg)](https://www.npmjs.com/package/react-electron-web-view)
+[![npm](https://img.shields.io/npm/dt/react-electron-web-view.svg?maxAge=2592000)](https://www.npmjs.com/package/react-electron-web-view)
+[![license](https://img.shields.io/github/license/MarshallOfSound/react-electron-web-view.svg?maxAge=2592000)](https://github.com/MarshallOfSound/react-electron-web-view/blob/master/LICENSE)
+![status](https://img.shields.io/badge/Status-%20Ready%20for%20Awesome-red.svg)
+
 __A simple wrapper of the Electron WebView element to allow it's magical props in React__
 
 
