@@ -1,6 +1,6 @@
 {
   "name": "react-electron-web-view",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Electron WebView",
   "main": "lib/ElectronWebView.js",
   "author": "Samuel Attard",
