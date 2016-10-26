@@ -98,6 +98,7 @@ export const props = {
 	guestinstance: PropTypes.number,
 	devtools: PropTypes.bool,
 	muted: PropTypes.bool,
+	webpreferences: PropTypes.string,
 };
 
 export const changableProps = {
