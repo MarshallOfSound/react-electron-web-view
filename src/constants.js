@@ -17,13 +17,24 @@ export const events = [
 	'enter-html-full-screen',
 	'leave-html-full-screen',
 	'console-message',
+	'found-in-page',
 	'new-window',
+	'will-navigate',
+	'did-navigate',
+	'did-navigate-in-page',
 	'close',
 	'ipc-message',
 	'crashed',
 	'gpu-crashed',
 	'plugin-crashed',
 	'destroyed',
+	'media-started-playing',
+	'media-paused',
+	'did-change-theme-color',
+	'update-target-url',
+	'devtools-opened',
+	'devtools-closed',
+	'devtools-focused'
 ];
 
 export const methods = [
@@ -93,12 +104,13 @@ export const props = {
 	disablewebsecurity: PropTypes.bool,
 	partition: PropTypes.string,
 	allowpopups: PropTypes.bool,
+	webpreferences: PropTypes.string,
 	blinkfeatures: PropTypes.string,
 	disableblinkfeatures: PropTypes.string,
 	guestinstance: PropTypes.number,
+	disableguestresize: PropTypes.bool,
 	devtools: PropTypes.bool,
 	muted: PropTypes.bool,
-	webpreferences: PropTypes.string,
 };
 
 export const changableProps = {
