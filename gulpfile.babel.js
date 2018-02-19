@@ -19,6 +19,8 @@ gulp.task('build', () =>
     extensions: ['jsx'],
     standalone: 'ElectronWebView',
   }).transform(babelify)
+    .external('react')
+    .external('react-dom')
     .bundle()
     .on('error', gutil.log)
     .pipe(source(config.outputFile))
