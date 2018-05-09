@@ -24,14 +24,16 @@ export default class ElectronWebView extends Component {
 
     this.ready = false;
     this.view.addEventListener('did-attach', (...attachArgs) => {
-      this.ready = true;
-      events.forEach((event) => {
-        this.view.addEventListener(event, (...eventArgs) => {
-          const propName = camelCase(`on-${event}`);
-          // console.log('Firing event: ', propName, ' has listener: ', !!this.props[propName]);
-          if (this.props[propName]) this.props[propName](...eventArgs);
+      if(!this.ready) {
+        this.ready = true;
+        events.forEach((event) => {
+          this.view.addEventListener(event, (...eventArgs) => {
+            const propName = camelCase(`on-${event}`);
+            // console.log('Firing event: ', propName, ' has listener: ', !!this.props[propName]);
+            if (this.props[propName]) this.props[propName](...eventArgs);
+          });
         });
-      });
+      }
       if (this.props.onDidAttach) this.props.onDidAttach(...attachArgs);
     });
 
