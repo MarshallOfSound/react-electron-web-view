@@ -97,6 +97,7 @@ export const props = {
 	src: PropTypes.string,
 	autosize: PropTypes.bool,
 	nodeintegration: PropTypes.bool,
+	nodeintegrationinsubframes: PropTypes.bool,
 	plugins: PropTypes.bool,
 	preload: PropTypes.string,
 	httpreferrer: PropTypes.string,
