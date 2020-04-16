@@ -29,7 +29,7 @@ yarn add react-electron-web-view
 ## Usage
 
 All events and methods on the WebView element are proxied through react.  You
-find the documentation on these events and methods [here](http://electron.atom.io/docs/api/web-view-tag/)
+find the documentation on these events and methods [here](https://www.electronjs.org/docs/api/webview-tag)
 
 ```
 const WebView = require('react-electron-web-view');
