@@ -53,6 +53,20 @@ Behind the scenes this renders a div and the **unsafely** sets the innerHTML of
 that div to be a webview element.  This hasn't been completely tested so make
 sure it works for you.
 
+If you [do not see a WebView](https://github.com/MarshallOfSound/react-electron-web-view/issues/17#issuecomment-504429994),
+and the developer tools show you an element of `0px` by `0px` that refuses to grow no matter what CSS you throw at it,
+please ensure you have set `webPreferences.webviewTag` to `true` when initialising the `BrowserWindow`, like so:
+
+```
+const mainWindow = new BrowserWindow({
+  width: 900,
+  height: 680,
+  webPreferences: {
+    webviewTag: true
+  }
+})
+```
+
 
 ## Development (`src`, `lib` and the build process)
 
