@@ -1,11 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import camelCase from 'lodash.camelcase';
 import { changableProps, events, methods, props } from './constants';
 
 export default class ElectronWebView extends Component {
-
-
 
   componentDidMount() {
     // Array to store event handlers
@@ -49,7 +48,6 @@ export default class ElectronWebView extends Component {
   }
 
   didAttachHandler(...attachArgs) {
-    if (!this.ready) {
       this.ready = true;
 
       events.forEach((event) => {
@@ -69,7 +67,6 @@ export default class ElectronWebView extends Component {
         // add listener
         this.view.addEventListener(event, eventHandler);
       });
-    }
     if (this.props.onDidAttach) this.props.onDidAttach(...attachArgs);
   }
 

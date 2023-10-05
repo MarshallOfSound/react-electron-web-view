@@ -13,15 +13,17 @@
     "url": "https://github.com/MarshallOfSound/react-electron-web-view/issues"
   },
   "dependencies": {
-    "lodash.camelcase": "^4.3.0"
+    "lodash.camelcase": "^4.3.0",
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "babel-core": "^6.17.0",
-    "babel-eslint": "^4.1.3",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.1.1",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
+    "babel-eslint": "^7.2.3",
+    "babel-laoder": "^0.0.1-security",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "chai": "^3.5.0",
     "cross-env": "^7.0.3",
     "electron": "^13.0.1",
@@ -32,20 +34,20 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.3.0",
-    "gulp": "^4.0.2",
-    "gulp-rimraf": "^1.0.0",
-    "gulp-util": "^3.0.8",
+    "mkdirp": "^3.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.0.2",
     "react-addons-test-utils": "^15.3.2",
-    "vinyl-source-stream": "^2.0.0"
+    "react-dom": "^18.0.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "scripts": {
-    "build": "gulp clean && gulp build",
+    "build": "mkdirp lib && webpack",
+    "prepublish": "npm run build",
     "lint": "exit 0",
     "mocha": "electron-mocha test/*_spec.js --renderer --compilers js:babel-core/register --timeout=10000",
     "pretest": "npm run build",
