@@ -28,7 +28,7 @@ export default class ElectronWebView extends Component {
     this.view = container.querySelector('webview');
 
     this.ready = false;
-    this.view.addEventListener('did-attach', this.cdidAttachHandler);
+    this.view.addEventListener('did-attach', this.didAttachHandler);
 
     methods.forEach((method) => {
       this[method] = (...args) => {
@@ -47,7 +47,7 @@ export default class ElectronWebView extends Component {
     };
   }
 
-  didAttachHandler(...attachArgs) {
+  didAttachHandler = (...attachArgs) => {
       this.ready = true;
 
       events.forEach((event) => {
