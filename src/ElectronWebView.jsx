@@ -1,10 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import camelCase from 'lodash.camelcase';
 import { changableProps, events, methods, props } from './constants';
 
 export default class ElectronWebView extends Component {
+
   componentDidMount() {
+    // Array to store event handlers
+    this.eventHandlers = [];
+
     const container = ReactDOM.findDOMNode(this.c);
     let propString = '';
     Object.keys(props).forEach((propName) => {
@@ -23,17 +28,7 @@ export default class ElectronWebView extends Component {
     this.view = container.querySelector('webview');
 
     this.ready = false;
-    this.view.addEventListener('did-attach', (...attachArgs) => {
-      this.ready = true;
-      events.forEach((event) => {
-        this.view.addEventListener(event, (...eventArgs) => {
-          const propName = camelCase(`on-${event}`);
-          // console.log('Firing event: ', propName, ' has listener: ', !!this.props[propName]);
-          if (this.props[propName]) this.props[propName](...eventArgs);
-        });
-      });
-      if (this.props.onDidAttach) this.props.onDidAttach(...attachArgs);
-    });
+    this.view.addEventListener('did-attach', this.didAttachHandler);
 
     methods.forEach((method) => {
       this[method] = (...args) => {
@@ -52,6 +47,29 @@ export default class ElectronWebView extends Component {
     };
   }
 
+  didAttachHandler = (...attachArgs) => {
+      this.ready = true;
+
+      events.forEach((event) => {
+        // create handler
+        const eventHandler = (...eventArgs) => {
+          const propName = camelCase(`on-${event}`);
+          // console.log('Firing event: ', propName, ' has listener: ', !!this.props[propName]);
+          if (this.props[propName]) this.props[propName](...eventArgs);
+        };
+
+        // Store a reference to the event handler
+        this.eventHandlers.push({
+          event,
+          handler: eventHandler
+        });
+
+        // add listener
+        this.view.addEventListener(event, eventHandler);
+      });
+    if (this.props.onDidAttach) this.props.onDidAttach(...attachArgs);
+  }
+
   componentDidUpdate(prevProps) {
     Object.keys(changableProps).forEach((propName) => {
       if (this.props[propName] !== prevProps[propName]) {
@@ -62,6 +80,19 @@ export default class ElectronWebView extends Component {
         }
       }
     });
+  }
+
+  componentWillUnmount() {
+    // Remove the added event handlers
+    this.eventHandlers.forEach(({ event, handler }) => {
+      this.view.removeEventListener(event, handler);
+    });
+
+    // Clear the eventHandlers array
+    this.eventHandlers = [];
+
+    // Remove the did-attach event handler
+    this.view.removeEventListener('did-attach', this.didAttachHandler);
   }
 
   isReady() {
